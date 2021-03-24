@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO {
+    // [TODO] close connections or add one to class
     public List<Product> getProducts() throws ShopException {
         List<Product> products = new ArrayList<>();
         try {

@@ -9,3 +9,21 @@
 td {
     border: 2px solid #2b2b2b;
 }
+
+h2 {
+    color: #2b2b2b;
+}
+
+.message-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.success {
+    color: lawngreen;
+}
+
+.fail {
+    color: darkred;
+}
