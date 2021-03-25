@@ -28,12 +28,14 @@ public void addMessage(String subject,String message,String formattedDate,String
           Connection connection=ConnectionProvider.getConnection();
           Statement statement=connection.createStatement();
           ResultSet resultSet=statement.executeQuery("select * from messages");
-          String subject=resultSet.getString("subject");
-          String message=resultSet.getString("message");
-          String formattedDate=resultSet.getString("formattedDate");
-          String userEmail=resultSet.getString("userEmail");
-          Message message1=new Message(subject,message,formattedDate,userEmail);
-          Messages.add(message1);
+          while (resultSet.next()) {
+              String subject = resultSet.getString("subject");
+              String message = resultSet.getString("message");
+              String formattedDate = resultSet.getString("formattedDate");
+              String userEmail = resultSet.getString("userEmail");
+              Message message1 = new Message(subject, message, formattedDate, userEmail);
+              Messages.add(message1);
+          }
       } catch (SQLException e) {
           throw new ShopException(e.getMessage());
       }

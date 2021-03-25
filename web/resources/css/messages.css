@@ -1,0 +1,14 @@
+* {
+    margin: auto;
+    padding: 0;
+    font-family: monospace;
+    color: #2b2b2b;
+    font-size: 36px;
+}
+
+.message {
+    border: 2px solid #2b2b2b;
+}
+h2 {
+    color: #2b2b2b;
+}
