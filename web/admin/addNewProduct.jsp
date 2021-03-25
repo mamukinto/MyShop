@@ -54,6 +54,8 @@ String msg = request.getParameter("msg");
  <input type="number" name="price">
 <hr>
 </div>
+
+ <input type="file">
  <button><i class='far fa-arrow-alt-circle-right'>Save</i></button>
 </form>
 

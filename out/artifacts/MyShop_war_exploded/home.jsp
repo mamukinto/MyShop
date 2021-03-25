@@ -1,6 +1,7 @@
 <%@ page import="model.Product" %>
 <%@ page import="service.ProductDAO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="model.Cart" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -51,7 +52,7 @@ if (msg != null) {
               <td><%out.print(product.getName());%></td>
               <td><%out.print(product.getDescription());%></td>
             <td><%out.print(product.getPrice());%><i class="fas fa-dollar-sign"></i></td>
-            <td><a href="">Add to cart <i class='fas fa-cart-plus'></i></a></td>
+            <td><a href="${pageContext.request.contextPath}/actions/addProductToCartAction.jsp?productId=<%out.print(product.getId());%>">Add to cart <i class='fas fa-cart-plus'></i></a></td>
           </tr>
 
         <%

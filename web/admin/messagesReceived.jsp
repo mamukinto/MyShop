@@ -28,7 +28,6 @@
         <h3>Message: <%out.print(message.getMessage());%></h3>
         <h3>Date: <%out.print(message.getFormattedDate());%></h3>
         <h3>Sender: <%out.print(message.getUserEmail());%></h3>
-
     </div>
 <%
         }

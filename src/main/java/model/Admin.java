@@ -1,6 +1,6 @@
 package model;
 
-public class Admin {
+public class Admin extends User {
     final static String ID = "admin@gmail.com";
     final static String PASSWORD = "admin";
 
