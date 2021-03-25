@@ -16,6 +16,7 @@
 </head>
 <body>
 <%@include file="adminHeader.jsp"%>
+<h3 id="title">Received messages <i class="fas fa-envelope-open-text"></i></h3>
 <%
     try {
         MessageDAO messageDAO = new MessageDAO();
@@ -23,10 +24,10 @@
         for (Message message : messages) {
 %>
     <div class="message">
-        <h2>Subject: <%out.print(message.getSubject());%></h2>
-        <h2>Message: <%out.print(message.getMessage());%></h2>
-        <h2>Date: <%out.print(message.getFormattedDate());%></h2>
-        <h2>Sender: <%out.print(message.getUserEmail());%></h2>
+        <h3>Subject: <%out.print(message.getSubject());%></h3>
+        <h3>Message: <%out.print(message.getMessage());%></h3>
+        <h3>Date: <%out.print(message.getFormattedDate());%></h3>
+        <h3>Sender: <%out.print(message.getUserEmail());%></h3>
 
     </div>
 <%

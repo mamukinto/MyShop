@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="/resources/css/admin-header.css">
     <title>admin page</title>
 </head>
-    <!--Header-->
-    <br>
 <div class="container">
 <h2>MySHOP</h2>
     <div class="navbar">
-    <%String email = session.getAttribute("email").toString(); %>
+    <%  if (session.getAttribute("email") == null) {
+        response.sendRedirect("/error.jsp");
+    }
+//        String email = session.getAttribute("email").toString();
+
+    %>
             <a href="addNewProduct.jsp">Add New Product <i class='fas fa-plus-square'></i></a>
             <a href="allProductEditProduct.jsp">View or edit products <i class='fab fa-elementor'></i></a>
             <a href="messagesReceived.jsp">Messages Received <i class='fas fa-comment-alt'></i></a>
@@ -22,5 +25,3 @@
             <a href="${pageContext.request.contextPath}/login.jsp">Logout <i class='fas fa-share-square'></i></a>
           </div>
 </div>
-           <br>
-           <!--table-->

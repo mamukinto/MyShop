@@ -6,9 +6,12 @@
     <link rel="stylesheet" href="resources/css/admin-header.css">
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
-    <!--Header-->
-    <br>
 <div class="container">
+    <%
+        if (session.getAttribute("email") == null) {
+            response.sendRedirect("/error.jsp");
+        }
+    %>
     <div class="navbar">
             <a href="home.jsp">Home<i class="fa fa-institution"></i></a>
             <a href="">My Cart<i class='fas fa-cart-arrow-down'></i></a>
@@ -19,5 +22,3 @@
             <a href="login.jsp">Logout <i class='fas fa-share-square'></i></a>
           </div>
 </div>
-           <br>
-           <!--table-->

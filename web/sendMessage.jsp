@@ -1,4 +1,4 @@
-<%@ page import="service.MessageHelper" %>
+<%@ page import="service.ShopUtils" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">

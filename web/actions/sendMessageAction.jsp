@@ -1,8 +1,8 @@
-<%@ page import="service.MessageHelper" %>
+<%@ page import="service.ShopUtils" %>
 <%@ page import="service.MessageDAO" %><%
     String subject = request.getParameter("subject");
     String message = request.getParameter("message");
-    String formattedDate = MessageHelper.getFormattedDate();
+    String formattedDate = ShopUtils.getFormattedDate();
     String userEmail = (String) session.getAttribute("email");
 
 
