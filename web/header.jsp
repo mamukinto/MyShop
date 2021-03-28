@@ -20,5 +20,6 @@
             <a href="sendMessage.jsp">Message Us <i class='fas fa-comment-alt'></i></a>
             <a href="">About <i class="fa fa-address-book"></i></a>
             <a href="login.jsp">Logout <i class='fas fa-share-square'></i></a>
+            <i class="fas fa-search"></i>
           </div>
 </div>

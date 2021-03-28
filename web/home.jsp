@@ -28,32 +28,21 @@ if (msg != null) {
     }
 %>
 
-
-
-<table style="width: 100%; border: 2px solid #2b2b2b;">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price  <i class="fas fa-dollar-sign"></i> </th>
-            <th scope="col">Add to cart<i class='fas fa-cart-plus'></i></th>
-          </tr>
-        </thead>
-        <tbody>
+<div class="mainContainer">
         <%
             try {
                 ProductDAO productDAO = new ProductDAO();
                 List<Product> products = productDAO.getProducts();
                 for (Product product : products) {
         %>
-          <tr>
-              <td><%out.print(product.getId());%></td>
-              <td><%out.print(product.getName());%></td>
-              <td><%out.print(product.getDescription());%></td>
-            <td><%out.print(product.getPrice());%><i class="fas fa-dollar-sign"></i></td>
-            <td><a href="${pageContext.request.contextPath}/actions/addProductToCartAction.jsp?productId=<%out.print(product.getId());%>">Add to cart <i class='fas fa-cart-plus'></i></a></td>
-          </tr>
+          <div class="productContainer">
+              <img class="productImage" src="<%out.print("resources/images/" + product.getId());%>.jpg" alt="product ID: <%out.print(product.getId());%>">
+              <h3 class="productInfo"><%out.print(product.getName());%></h3>
+              <h3 class="productInfo"><%out.print(product.getDescription());%></h3>
+              <h3 class="productInfo"><%out.print(product.getPrice());%>$</h3>
+              <a href="${pageContext.request.contextPath}/actions/addProductToCartAction.jsp?productId=<%out.print(product.getId());%>"><button>Add to cart<i class='fas fa-cart-arrow-down'></i></button></a>
+              <a href="${pageContext.request.contextPath}/actions/"><button>More information<i class="far fa-clone"></i></button></a>
+          </div>
 
         <%
                 }
@@ -61,9 +50,7 @@ if (msg != null) {
                     System.out.println(e);
                 }
         %>
-
-        </tbody>
-      </table>
-<%@include file="footer.jsp" %>
+</div>
+            <%@include file="footer.jsp" %>
 </body>
 </html>

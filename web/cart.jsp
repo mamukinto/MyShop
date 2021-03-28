@@ -25,6 +25,10 @@
         <h2 class="cardInfo">Product ID: <%out.print(product.getProduct().getId());%></h2>
         <h2 class="cardInfo">Product Name: <%out.print(product.getProduct().getName());%></h2>
         <h2 class="cardInfo">Product Quantity: <%out.print(product.getCount());%></h2>
+        <div class="quantityButtons">
+            <a href="actions/increaseProductQuantityAction.jsp?productId=<%out.print(product.getProduct().getId());%>"><button class="add"><i class="fas fa-plus"></i></button></a>
+            <a href="actions/decreaseProductQuantityAction.jsp?productId=<%out.print(product.getProduct().getId());%>"><button><i class="fas fa-minus"></i></button></a>
+        </div>
     </div>
 <%
     }

@@ -32,4 +32,6 @@ public class CartProduct {
     public void addCount() {
         this.count++;
     }
+
+    public void subtractCount() {this.count--;}
 }

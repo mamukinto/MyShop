@@ -55,7 +55,8 @@ String msg = request.getParameter("msg");
 <hr>
 </div>
 
- <input type="file">
+ <input type="file" name="image">
+ <hr>
  <button><i class='far fa-arrow-alt-circle-right'>Save</i></button>
 </form>
 

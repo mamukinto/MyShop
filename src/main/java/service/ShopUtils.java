@@ -9,4 +9,10 @@ public class ShopUtils {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         return myDateObj.format(myFormatObj);
     }
+
+    public static String getShortDescription(String description) {
+        String shortDescription = null;
+        // magic - get first 3 words and add "..."
+        return shortDescription;
+    }
 }
