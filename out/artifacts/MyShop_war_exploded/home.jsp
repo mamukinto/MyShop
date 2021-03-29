@@ -2,6 +2,7 @@
 <%@ page import="service.ProductDAO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Cart" %>
+<%@ page import="service.ShopUtils" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -38,7 +39,7 @@ if (msg != null) {
           <div class="productContainer">
               <img class="productImage" src="<%out.print("resources/images/" + product.getId());%>.jpg" alt="product ID: <%out.print(product.getId());%>">
               <h3 class="productInfo"><%out.print(product.getName());%></h3>
-              <h3 class="productInfo"><%out.print(product.getDescription());%></h3>
+              <h3 class="productInfo"><%out.print(ShopUtils.getShortDescription(product.getDescription()));%></h3>
               <h3 class="productInfo"><%out.print(product.getPrice());%>$</h3>
               <a href="${pageContext.request.contextPath}/actions/addProductToCartAction.jsp?productId=<%out.print(product.getId());%>"><button>Add to cart<i class='fas fa-cart-arrow-down'></i></button></a>
               <a href="${pageContext.request.contextPath}/actions/"><button>More information<i class="far fa-clone"></i></button></a>

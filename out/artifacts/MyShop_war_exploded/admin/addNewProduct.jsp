@@ -27,6 +27,7 @@ String msg = request.getParameter("msg");
  int id = 1;
  try {
    id = ProductHelper.getMaxId() + 1;
+   session.setAttribute("id",id);
  } catch (ShopException e) {
   e.printStackTrace();
  }
@@ -54,12 +55,22 @@ String msg = request.getParameter("msg");
  <input type="number" name="price">
 <hr>
 </div>
-
- <input type="file" name="image">
- <hr>
  <button><i class='far fa-arrow-alt-circle-right'>Save</i></button>
 </form>
 
+<form action="${pageContext.request.contextPath}/UploadServlet" method="post" enctype="multipart/form-data">
+
+ <input type="file" name="image">
+ <hr>
+ <input type="submit" value="upload">
+</form>
+<%
+if ("added".equals(request.getParameter("img"))) {
+%>
+<h2 class="success">Image succesfully added</h2>
+<%
+ }
+%>
 
 <%@include file="/footer.jsp" %>
 </body>
