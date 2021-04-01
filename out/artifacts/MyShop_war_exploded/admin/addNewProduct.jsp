@@ -60,17 +60,17 @@ String msg = request.getParameter("msg");
 
 <form action="${pageContext.request.contextPath}/UploadServlet" method="post" enctype="multipart/form-data">
 
- <input type="file" name="image">
- <hr>
- <input type="submit" value="upload">
+ <input type="file" name="image"/>
+ <button>Submit image</button>
+ <%
+  if ("added".equals(request.getParameter("img"))) {
+ %>
+ <i class="fas fa-check"></i>
+ <%
+  }
+ %>
+
 </form>
-<%
-if ("added".equals(request.getParameter("img"))) {
-%>
-<h2 class="success">Image succesfully added</h2>
-<%
- }
-%>
 
 <%@include file="/footer.jsp" %>
 </body>

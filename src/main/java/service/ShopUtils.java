@@ -20,4 +20,8 @@ public class ShopUtils {
         }
         return shortDescription;
     }
+
+    public static String getFileType(String path) {
+                return path.split(".")[path.split(".").length - 1];
+    }
 }

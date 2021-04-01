@@ -5,6 +5,7 @@ public class Product {
     private String name;
     private String description;
     private double price;
+    private ProductImage image;
 
     public Product() {
     }
@@ -46,5 +47,13 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public ProductImage getImage() {
+        return image;
+    }
+
+    public void setImage(ProductImage image) {
+        this.image = image;
     }
 }

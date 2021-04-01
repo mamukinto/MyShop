@@ -10,6 +10,7 @@
  try {
   ProductDAO  productDAO = new ProductDAO();
   productDAO.addProduct(id,name,description,price);
+  productDAO.addImage(session.getAttribute("image64").toString(),id + "");
 
   response.sendRedirect("/admin/addNewProduct.jsp?msg=done");
  } catch (Exception e) {

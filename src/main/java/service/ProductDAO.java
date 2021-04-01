@@ -1,15 +1,21 @@
 package service;
 
 import model.Product;
+import model.ProductImage;
 import model.User;
 import model.exceptions.ShopException;
 
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class ProductDAO {
-    // [TODO] close connections or add one to class
+    // [    TODO] close connections or add one to class
     public List<Product> getProducts() throws ShopException {
         List<Product> products = new ArrayList<>();
         try {
@@ -25,9 +31,19 @@ public class ProductDAO {
                 products.add(product);
             }
         } catch (SQLException throwables) {
+            throwables.printStackTrace();
             throw new ShopException(throwables.getMessage());
         }
 
+        List<ProductImage> images = getImages();
+        images.forEach(productImage -> {
+            products.forEach(product -> {
+                if (productImage.getFileName().equals(String.valueOf(product.getId()))) {
+                    product.setImage(productImage);
+                }
+            });
+
+        });
         return products;
     }
     public void addProduct(int id, String name, String description, double price) {
@@ -48,8 +64,49 @@ public class ProductDAO {
             Connection c = ConnectionProvider.getConnection();
             Statement statement = c.createStatement();
             statement.executeUpdate("DELETE FROM products WHERE id = " + id);
+            removeImageById(id);
         } catch (ShopException | SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void removeImageById(int id) {
+        try {
+            Connection c = ConnectionProvider.getConnection();
+            Statement statement = c.createStatement();
+            statement.executeUpdate("DELETE FROM images WHERE fileName = " + id);
+        } catch (ShopException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addImage(String base64Image, String fileName) {
+        try {
+            Connection c = ConnectionProvider.getConnection();
+            PreparedStatement ps = c.prepareStatement("insert into images values(?,?)");
+            ps.setString(1, fileName);
+            ps.setString(2, base64Image);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    public List<ProductImage> getImages() throws ShopException {
+        List<ProductImage> images = new ArrayList<>();
+        try {
+            Connection connection = ConnectionProvider.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from images");
+            while (resultSet.next()) {
+                String base64 = resultSet.getString("base64Image");
+                String fileName = resultSet.getString("fileName");
+                images.add(new ProductImage(base64,fileName));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ShopException(e.getMessage());
+
+        }
+        return images;
     }
 }

@@ -3,6 +3,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="model.Cart" %>
 <%@ page import="service.ShopUtils" %>
+<%@ page import="model.ProductImage" %>
+<%@ page import="java.io.FileOutputStream" %>
+<%@ page import="java.io.BufferedOutputStream" %>
+<%@ page import="java.util.Base64" %>
+<%@ page import="java.io.FileNotFoundException" %>
+<%@ page import="java.io.IOException" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,6 +19,8 @@
 <body>
 <%@include file="header.jsp" %>
 <h2>Home <i class="fa fa-institution"></i></h2>
+
+
 
 <%
 String msg = request.getParameter("msg");
@@ -37,7 +45,7 @@ if (msg != null) {
                 for (Product product : products) {
         %>
           <div class="productContainer">
-              <img class="productImage" src="<%out.print("resources/images/" + product.getId());%>.jpg" alt="product ID: <%out.print(product.getId());%>">
+              <img class="productImage" src="data:image/jpeg;base64,<%out.print(product.getImage().getBase64());%>" alt="product ID: <%out.print(product.getId());%>">
               <h3 class="productInfo"><%out.print(product.getName());%></h3>
               <h3 class="productInfo"><%out.print(ShopUtils.getShortDescription(product.getDescription()));%></h3>
               <h3 class="productInfo"><%out.print(product.getPrice());%>$</h3>
@@ -52,6 +60,6 @@ if (msg != null) {
                 }
         %>
 </div>
-            <%@include file="footer.jsp" %>
+            <%@include file="footer.jsp"%>
 </body>
 </html>
