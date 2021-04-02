@@ -50,7 +50,7 @@ if (msg != null) {
               <h3 class="productInfo"><%out.print(ShopUtils.getShortDescription(product.getDescription()));%></h3>
               <h3 class="productInfo"><%out.print(product.getPrice());%>$</h3>
               <a href="${pageContext.request.contextPath}/actions/addProductToCartAction.jsp?productId=<%out.print(product.getId());%>"><button>Add to cart<i class='fas fa-cart-arrow-down'></i></button></a>
-              <a href="${pageContext.request.contextPath}/actions/"><button>More information<i class="far fa-clone"></i></button></a>
+              <a href="${pageContext.request.contextPath}/detailedProduct.jsp?productId=<%out.print(product.getId());%>"><button>More information<i class="far fa-clone"></i></button></a>
           </div>
 
         <%
@@ -60,6 +60,6 @@ if (msg != null) {
                 }
         %>
 </div>
-            <%@include file="footer.jsp"%>
+                <%@include file="footer.jsp"%>
 </body>
 </html>

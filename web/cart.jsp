@@ -22,6 +22,7 @@
     for (CartProduct product : cart.getProducts()) {
 %>
     <div class="cartProductContainer">
+        <img src="data:image/jpeg;base64,<%out.print(product.getProduct().getImage().getBase64());%>" alt="">
         <h2 class="cardInfo">Product ID: <%out.print(product.getProduct().getId());%></h2>
         <h2 class="cardInfo">Product Name: <%out.print(product.getProduct().getName());%></h2>
         <h2 class="cardInfo">Product Quantity: <%out.print(product.getCount());%></h2>
