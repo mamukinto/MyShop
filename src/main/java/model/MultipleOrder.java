@@ -6,7 +6,7 @@ public class MultipleOrder extends Order{
     private Cart cart;
 
     public MultipleOrder() {
-
+        cart = new Cart();
     }
 
     @Override
@@ -14,9 +14,9 @@ public class MultipleOrder extends Order{
         return cart;
     }
 
-    public MultipleOrder(int id, String userEmail, String formattedDate, Cart cart) {
+    public MultipleOrder(int id, String userEmail, String formattedDate) {
         super(id, userEmail, formattedDate);
-        this.cart = cart;
+        cart = new Cart();
     }
 
     @Override

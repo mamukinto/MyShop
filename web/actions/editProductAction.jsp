@@ -10,6 +10,7 @@
         Connection connection = ConnectionProvider.getConnection();
         Statement statement = connection.createStatement();
         statement.executeUpdate("update products set name = '" + name + "', description = '" + description +"', price = '" + price + "' where id='" + id + "'");
+        connection.close();
         response.sendRedirect("/admin/allProductEditProduct.jsp?msg=done");
     } catch (Exception e){
         response.sendRedirect("/admin/allProductEditProduct.jsp?msg=wrong");

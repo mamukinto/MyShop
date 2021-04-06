@@ -1,6 +1,7 @@
 <%@ page import="model.Product" %>
 <%@ page import="service.ProductDAO" %>
 <%@ page import="service.ProductHelper" %>
+<%@ page import="model.exceptions.ShopException" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,7 +15,12 @@
 <body>
 <%@include file="header.jsp" %>
 <%
-    Product thisProduct = ProductHelper.getProductById(Integer.parseInt(request.getParameter("productId")));
+    Product thisProduct = null;
+    try {
+        thisProduct = ProductHelper.getProductById(Integer.parseInt(request.getParameter("productId")));
+    } catch (ShopException e) {
+        e.printStackTrace();
+    }
 %>
 <div class="detailedProductContainer">
     <div class="imageAndPrice">
@@ -25,7 +31,19 @@
         <h1><%out.print(thisProduct.getName());%></h1>
         <p><%out.print(thisProduct.getDescription());%></p>
         <a href="${pageContext.request.contextPath}/actions/addProductToCartAction.jsp?productId=<%out.print(thisProduct.getId());%>"><button>Add to cart <i class="fa fa-cart-plus" aria-hidden="true"></i></button></a>
-        <button>Order now <i class="fas fa-file-contract"></i></button>
+        <a href="actions/makeOrderFromDetailed.jsp?productId=<%out.print(thisProduct.getId());%>"><button>Order now <i class="fas fa-file-contract"></i></button></a>
+        <%
+        String msg = request.getParameter("msg");
+        if ("fail".equals(msg)) {
+        %>
+        <h1 class="fail">Couldn't order this product :(( </h1>
+        <%
+            } else if ("success".equals(msg)) {
+        %>
+        <h1 class="success">Product Succesfully ordered. See your <a href="orders.jsp">orders</a></h1>
+        <%
+            }
+        %>
     </div>
 </div>
 <%@include file="footer.jsp"%>

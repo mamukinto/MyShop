@@ -23,6 +23,7 @@ public class UserDAO {
                 User user = new User(name,email,number,password);
                 users.add(user);
             }
+            connection.close();
         } catch (SQLException throwables) {
             throw new ShopException(throwables.getMessage());
         }
@@ -38,5 +39,6 @@ public class UserDAO {
         ps.setString(3,mobileNumber);
         ps.setString(4,password);
         ps.executeUpdate();
+        c.close();
     }
 }

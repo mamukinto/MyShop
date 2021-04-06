@@ -3,9 +3,10 @@ package model;
 import java.util.List;
 
 public abstract class Order {
-    protected int id;
-    protected String userEmail;
-    protected String formattedDate;
+    private int id;
+    private String userEmail;
+    private String formattedDate;
+    private String status;
 
     public Order() {
 
@@ -17,7 +18,7 @@ public abstract class Order {
         this.formattedDate = formattedDate;
     }
     public Cart getProducts(){
-        return null;
+        return new Cart();
     }
     public void setProducts(List<CartProduct>cartProducts){
 
@@ -45,6 +46,14 @@ public abstract class Order {
 
     public void setFormattedDate(String formattedDate) {
         this.formattedDate = formattedDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

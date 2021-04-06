@@ -30,6 +30,7 @@ public class ProductDAO {
                 Product product = new Product(id,name,description,price);
                 products.add(product);
             }
+            connection.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
             throw new ShopException(throwables.getMessage());
@@ -55,6 +56,7 @@ public class ProductDAO {
             ps.setString(3, description);
             ps.setDouble(4, price);
             ps.executeUpdate();
+            c.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -65,6 +67,7 @@ public class ProductDAO {
             Statement statement = c.createStatement();
             statement.executeUpdate("DELETE FROM products WHERE id = " + id);
             removeImageById(id);
+            c.close();
         } catch (ShopException | SQLException e) {
             e.printStackTrace();
         }
@@ -75,6 +78,7 @@ public class ProductDAO {
             Connection c = ConnectionProvider.getConnection();
             Statement statement = c.createStatement();
             statement.executeUpdate("DELETE FROM images WHERE fileName = " + id);
+            c.close();
         } catch (ShopException | SQLException e) {
             e.printStackTrace();
         }
@@ -87,6 +91,7 @@ public class ProductDAO {
             ps.setString(1, fileName);
             ps.setString(2, base64Image);
             ps.executeUpdate();
+            c.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -102,6 +107,7 @@ public class ProductDAO {
                 String fileName = resultSet.getString("fileName");
                 images.add(new ProductImage(base64,fileName));
             }
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
             throw new ShopException(e.getMessage());

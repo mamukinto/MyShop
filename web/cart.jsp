@@ -35,8 +35,22 @@
     }
 %>
     <h1>Summary price: <%out.print(summaryPrice);%></h1>
-    <button>Make order <i class='fab fa-elementor'></i></button>
+<a href="actions/makeOrderFromCart.jsp"><button>Make order<i class='fab fa-elementor'></i></button></a>
 
+<%
+String msg = request.getParameter("msg");
+if (msg != null) {
+    if (msg.equals("success")) {
+%>
+<h1 class="success">Order successfully added! check <a href="orders.jsp">Orders</a> to view your orders</h1>
+<%
+    } else if (msg.equals("fail")) {
+%>
+<h1 class="fail">Something went wrong. couldn't add order, Try again</h1>
+<%
+    }
+    }
+%>
 <%@include file="footer.jsp" %>
 </body>
 </html>

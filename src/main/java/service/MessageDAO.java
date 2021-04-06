@@ -17,6 +17,7 @@ public void addMessage(String subject,String message,String formattedDate,String
         preparedStatement.setString(3,formattedDate);
         preparedStatement.setString(4,userEmail);
         preparedStatement.executeUpdate();
+        c.close();
     } catch (SQLException e) {
         throw new ShopException(e.getMessage());
     }
@@ -36,6 +37,7 @@ public void addMessage(String subject,String message,String formattedDate,String
               Message message1 = new Message(subject, message, formattedDate, userEmail);
               Messages.add(message1);
           }
+          connection.close();
       } catch (SQLException e) {
           throw new ShopException(e.getMessage());
       }

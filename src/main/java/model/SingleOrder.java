@@ -6,7 +6,12 @@ public class SingleOrder  extends Order {
     private CartProduct cartProduct;
 
     public SingleOrder() {
+        cartProduct = new CartProduct();
+    }
 
+    public SingleOrder(int id, String userEmail, String formattedDate, CartProduct cartProduct) {
+        super(id, userEmail, formattedDate);
+        this.cartProduct =cartProduct;
     }
 
     @Override
@@ -18,13 +23,9 @@ public class SingleOrder  extends Order {
 
     @Override
     public void setProducts(List<CartProduct> cartProducts) {
-       cartProducts.add(cartProduct);
+       cartProduct = cartProducts.get(0);
     }
 
-    public SingleOrder(int id, String userEmail, String formattedDate, CartProduct cartProduct) {
-        super(id, userEmail, formattedDate);
-        this.cartProduct =cartProduct;
-    }
 
 
     @Override

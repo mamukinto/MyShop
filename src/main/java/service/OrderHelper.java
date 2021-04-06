@@ -9,49 +9,102 @@ import java.util.List;
 
 public class OrderHelper {
     public static String[] formatProducts(Cart cart) {
-        StringBuilder sbIds=new StringBuilder();
-        StringBuilder sbQuantities=new StringBuilder();
+        StringBuilder sbIds = new StringBuilder();
+        StringBuilder sbQuantities = new StringBuilder();
         cart.getProducts().forEach(cartProduct -> {
             sbIds.append(cartProduct.getProduct().getId() + ",");
-            sbQuantities.append(cartProduct.getCount()+",");
+            sbQuantities.append(cartProduct.getCount() + ",");
         });
-        String[] result = {sbIds.toString(),sbQuantities.toString()};
+        String[] result = {sbIds.toString(), sbQuantities.toString()};
         return result;
     }
 
-    public static Order parseOrder(int id,String productIDS, String quantities,String userEmail, String formattedDate) throws ShopException, SQLException {
-        List<CartProduct>cartProducts=new ArrayList<>();
-        String[] ids=productIDS.split(",");
-        String[] Quantities=quantities.split(",");
-        int[] productids=new int[ids.length];
-        int[] productQuantity=new int[Quantities.length];
-        for(int i=0;i<ids.length;i++){
-            productids[i]=Integer.parseInt(ids[i]);
-            productQuantity[i]=Integer.parseInt(Quantities[i]);
-        }
+    public static Order parseOrder(int id, String productIDS, String quantities, String userEmail, String formattedDate, String status) throws ShopException, SQLException {
+        List<CartProduct> cartProducts = new ArrayList<>();
+        String[] idsArray = productIDS.split(",");
+        String[] quantitiesArray = quantities.split(",");
 
-        for (int k=0;k<productIDS.length();k++){
-            CartProduct cartProduct=new CartProduct();
-            cartProduct.setProduct(ProductHelper.getProductById(k));
-            cartProduct.setCount(productQuantity[k]);
+        for (int i = 0; i < idsArray.length; i++) {
+            CartProduct cartProduct = new CartProduct();
+            cartProduct.setProduct(ProductHelper.getProductById(Integer.parseInt(idsArray[i])));
+            cartProduct.setCount(Integer.parseInt(quantitiesArray[i]));
             cartProducts.add(cartProduct);
         }
 
-        Order order=null;
 
-        if(cartProducts.size()>1){
-          order=new MultipleOrder();
-          order.setId(id);
-          order.setProducts(cartProducts);
-          order.setUserEmail(userEmail);
-          order.setFormattedDate(formattedDate);
-        }else{
-            order=new SingleOrder();
-            order.setId(id);
-            order.setProducts(cartProducts);
-            order.setUserEmail(userEmail);
-            order.setFormattedDate(formattedDate);
+        Order order = null;
+
+        if (cartProducts.size() > 1) {
+            order = new MultipleOrder();
+        } else {
+            order = new SingleOrder();
         }
+        order.setId(id);
+        order.setProducts(cartProducts);
+        order.setUserEmail(userEmail);
+        order.setFormattedDate(formattedDate);
+        order.setStatus(status);
         return order;
     }
+
+    public static int getMaxId() throws ShopException {
+        int id = 0;
+        List<Order> orders = new ArrayList<>();
+        OrderDAO orderDAO = new OrderDAO();
+        orders = orderDAO.getOrders();
+        if (orders.size() != 0) {
+            for (Order order : orders) {
+                if (order.getId() > id) {
+                    id = order.getId();
+                }
+            }
+        }
+        return id;
+    }
+
+    public static List<Order> getOrdersByEmail(String email) throws ShopException {
+        List<Order> orders = new ArrayList<>();
+        OrderDAO orderDAO = new OrderDAO();
+        for (Order order : orderDAO.getOrders()) {
+            if (order.getUserEmail().equals(email)) {
+                orders.add(order);
+            }
+        }
+        return orders;
+    }
+
+    public static List<Order> getActiveOrders() throws ShopException {
+        List<Order> orders = new ArrayList<>();
+        OrderDAO orderDAO = new OrderDAO();
+        for (Order order : orderDAO.getOrders()) {
+            if (order.getStatus().equals("processing..")) {
+                orders.add(order);
+            }
+        }
+        return orders;
+    }
+
+    public static List<Order> getDeliveredOrders() throws ShopException {
+        List<Order> orders = new ArrayList<>();
+        OrderDAO orderDAO = new OrderDAO();
+        for (Order order : orderDAO.getOrders()) {
+            if (order.getStatus().equals("delivered")) {
+                orders.add(order);
+            }
+        }
+        return orders;
+    }
+
+    public static List<Order> getCanceledOrders() throws ShopException {
+        List<Order> orders = new ArrayList<>();
+        OrderDAO orderDAO = new OrderDAO();
+        for (Order order : orderDAO.getOrders()) {
+            if (order.getStatus().equals("canceled")) {
+                orders.add(order);
+            }
+        }
+        return orders;
+    }
+
+
 }

@@ -85,3 +85,15 @@ h2 {
 .nameAndDescription > i {
     color: #2b2b2b;
 }
+
+.orderContainer {
+    display: flex;
+}
+.orderContainer > i {
+    color: #2b2b2b;
+}
+
+.orderStatus {
+    display: flex;
+    flex-direction: column;
+}
