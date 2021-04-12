@@ -20,6 +20,27 @@
             <a href="sendMessage.jsp">Message Us <i class='fas fa-comment-alt'></i></a>
             <a href="">About <i class="fa fa-address-book"></i></a>
             <a href="login.jsp">Logout <i class='fas fa-share-square'></i></a>
-            <i class="fas fa-search"></i>
+            <form action="home.jsp" method="post">
+                <input type="text" name="keyword" placeholder="Search..">
+            </form>
           </div>
 </div>
+<style>
+    input[type=text] {
+        width: 130px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        padding: 12px 20px 12px 40px;
+        -webkit-transition: width 0.4s ease-in-out;
+        transition: width 0.4s ease-in-out;
+    }
+
+    input[type=text]:focus {
+        width: 100%;
+    }
+</style>

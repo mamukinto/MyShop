@@ -115,4 +115,38 @@ public class ProductDAO {
         }
         return images;
     }
+
+    public List<Product> getProductsByKeyword(String keyword) throws ShopException {
+        List<Product> products = new ArrayList<>();
+
+        try {
+            Connection connection = ConnectionProvider.getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM products WHERE name like '" + keyword + "' or description like '" + keyword + "';");
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String description = resultSet.getString("description");
+                double price = resultSet.getDouble("price");
+                Product product = new Product(id,name,description,price);
+                products.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new ShopException(e.getMessage());
+        }
+
+
+        List<ProductImage> images = getImages();
+        images.forEach(productImage -> {
+            products.forEach(product -> {
+                if (productImage.getFileName().equals(String.valueOf(product.getId()))) {
+                    product.setImage(productImage);
+                }
+            });
+
+        });
+        //[ TODO: 12.04.2021 refactor this please)) ]
+        return products;
+    }
 }
