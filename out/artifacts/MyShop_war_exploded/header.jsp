@@ -18,16 +18,17 @@
             <a href="orders.jsp">My Orders  <i class='fab fa-elementor'></i></a>
             <a href="">Change Details <i class="fa fa-edit"></i></a>
             <a href="sendMessage.jsp">Message Us <i class='fas fa-comment-alt'></i></a>
-            <a href="">About <i class="fa fa-address-book"></i></a>
+            <a href="about.jsp">About <i class="fa fa-address-book"></i></a>
             <a href="login.jsp">Logout <i class='fas fa-share-square'></i></a>
             <form action="home.jsp" method="post">
+                <i class="fas fa-search"></i>
                 <input type="text" name="keyword" placeholder="Search..">
             </form>
           </div>
 </div>
 <style>
     input[type=text] {
-        width: 130px;
+        width: 0px;
         box-sizing: border-box;
         border: 2px solid #ccc;
         border-radius: 4px;
