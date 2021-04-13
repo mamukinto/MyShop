@@ -31,6 +31,23 @@ public class UserDAO {
         return users;
     }
 
+    public void updateUser(String name,String number,String password,String email) throws ShopException {
+
+        try {
+            Connection  connection = ConnectionProvider.getConnection();
+            Statement statement = connection.createStatement();
+            if (password != null) {
+                statement.executeUpdate("update users set name = '" + name + "', number = '" + number +"', password = '" + password + "' where email='" + email + "'");
+            } else {
+                statement.executeUpdate("update users set name = '" + name + "', number = '" + number +"' where email='" + email + "'");
+            }
+           connection.close();
+        } catch (ShopException | SQLException e) {
+            throw new ShopException(e.getMessage());
+        }
+
+    }
+
     public void addUser(String name,String email,String mobileNumber,String password) throws ShopException, SQLException {
         Connection c = ConnectionProvider.getConnection();
         PreparedStatement ps = c.prepareStatement("insert into users values(?,?,?,?)");

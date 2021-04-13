@@ -7,6 +7,7 @@
     double price = Double.parseDouble(request.getParameter("price"));
 
     try {
+        //[TODO move this to DAO:))]
         Connection connection = ConnectionProvider.getConnection();
         Statement statement = connection.createStatement();
         statement.executeUpdate("update products set name = '" + name + "', description = '" + description +"', price = '" + price + "' where id='" + id + "'");
