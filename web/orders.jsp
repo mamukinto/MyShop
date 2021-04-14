@@ -1,9 +1,9 @@
-<%@ page import="service.OrderDAO" %>
+<%@ page import="service.dao.OrderDAO" %>
 <%@ page import="model.Order" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.CartProduct" %>
-<%@ page import="service.CartHelper" %>
-<%@ page import="service.OrderHelper" %>
+<%@ page import="service.helpers.CartHelper" %>
+<%@ page import="service.helpers.OrderHelper" %>
 <%@ page import="model.exceptions.ShopException" %>
 <!doctype html>
 <html lang="en">
@@ -28,42 +28,42 @@
     }
     for (Order order : orders) {
 %>
-    <div class="orderContainer">
-        <div class="mainInfo">
+<div class="orderContainer">
+    <div class="mainInfo">
         <h1>ID : <%out.print(order.getId());%></h1>
 
-            <table class="productContainerTable">
-                <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Quantity</th>
-                </tr>
-                </thead>
-                <tbody>
-                <%
-                    for (CartProduct product : order.getProducts().getProducts()) {
-                %>
-                <tr>
-                    <td><%out.print(product.getProduct().getId());%></td>
-                    <td><%out.print(product.getProduct().getName());%></td>
-                    <td><%out.print(product.getCount());%></td>
-                </tr>
-                <%
-                        }
-                %>
+        <table class="productContainerTable">
+            <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Quantity</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                for (CartProduct product : order.getProducts().getProducts()) {
+            %>
+            <tr>
+                <td><%out.print(product.getProduct().getId());%></td>
+                <td><%out.print(product.getProduct().getName());%></td>
+                <td><%out.print(product.getCount());%></td>
+            </tr>
+            <%
+                }
+            %>
 
-                </tbody>
-            </table>
-            <h1>Date : <%out.print(order.getFormattedDate());%></h1>
-            <h1>Summary price: <%out.print(CartHelper.calculateSummaryPriceInCart(order.getProducts()));%></h1>
-        </div>
-
-        <div class="orderStatus">
-            <h1>Status:</h1>
-            <h1><%out.print(order.getStatus());%></h1>
-        </div>
+            </tbody>
+        </table>
+        <h1>Date : <%out.print(order.getFormattedDate());%></h1>
+        <h1>Summary price: <%out.print(CartHelper.calculateSummaryPriceInCart(order.getProducts()));%></h1>
     </div>
+
+    <div class="orderStatus">
+        <h1>Status:</h1>
+        <h1><%out.print(order.getStatus());%></h1>
+    </div>
+</div>
 <hr>
 <%
     }

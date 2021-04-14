@@ -1,10 +1,9 @@
-<%@ page import="service.OrderDAO" %>
-<%@ page import="model.Order" %>
-<%@ page import="java.util.List" %>
 <%@ page import="model.CartProduct" %>
-<%@ page import="service.CartHelper" %>
-<%@ page import="service.OrderHelper" %>
+<%@ page import="model.Order" %>
 <%@ page import="model.exceptions.ShopException" %>
+<%@ page import="service.helpers.CartHelper" %>
+<%@ page import="service.helpers.OrderHelper" %>
+<%@ page import="java.util.List" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -24,7 +23,7 @@
 %>
 <h1 class="success">Successfully marked as delivered</h1>
 <%
-} else if ("deliveredFail".equals(msg)){
+} else if ("deliveredFail".equals(msg)) {
 %>
 <h1 class="fail">Couldn't mark order as delivered</h1>
 <%

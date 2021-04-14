@@ -1,17 +1,13 @@
-<%@ page import="service.ConnectionProvider" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.Statement" %><%
+<%@ page import="service.dao.ProductDAO" %>
+<%
     int id = Integer.parseInt(request.getParameter("id"));
     String name = request.getParameter("name");
     String description = request.getParameter("description");
     double price = Double.parseDouble(request.getParameter("price"));
 
     try {
-        //[TODO move this to DAO:))]
-        Connection connection = ConnectionProvider.getConnection();
-        Statement statement = connection.createStatement();
-        statement.executeUpdate("update products set name = '" + name + "', description = '" + description +"', price = '" + price + "' where id='" + id + "'");
-        connection.close();
+        ProductDAO productDAO = new ProductDAO();
+        productDAO.updateProduct(id,name,description,price);
         response.sendRedirect("/admin/allProductEditProduct.jsp?msg=done");
     } catch (Exception e){
         response.sendRedirect("/admin/allProductEditProduct.jsp?msg=wrong");

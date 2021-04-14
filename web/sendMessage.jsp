@@ -28,16 +28,16 @@
         %>
     </div>
 
-<form action="actions/sendMessageAction.jsp" method="post" id="messageForm">
-    <h3>Enter subject</h3>
-    <input type="text" name="subject">
-    <hr>
-    <h3>Enter message</h3>
-    <textarea form="messageForm" name="message"></textarea>
-    <hr>
-    <input type="submit" value="Send">
-    <hr>
-</form>
+    <form action="actions/sendMessageAction.jsp" method="post" id="messageForm">
+        <h3>Enter subject</h3>
+        <input type="text" name="subject">
+        <hr>
+        <h3>Enter message</h3>
+        <textarea form="messageForm" name="message"></textarea>
+        <hr>
+        <input type="submit" value="Send">
+        <hr>
+    </form>
 </div>
 
 <%@include file="footer.jsp" %>

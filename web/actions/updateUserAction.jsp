@@ -1,7 +1,8 @@
-<%@ page import="service.UserHelper" %>
+<%@ page import="service.helpers.UserHelper" %>
 <%@ page import="model.exceptions.ShopException" %>
 <%@ page import="model.User" %>
-<%@ page import="service.UserDAO" %><%
+<%@ page import="service.dao.UserDAO" %>
+<%
     String name = request.getParameter("name");
     String email = request.getParameter("email");
     String number = request.getParameter("number");
@@ -14,12 +15,14 @@
         User user = UserHelper.getUserByEmail(email);
         if (user.getPassword().equals(oldPassword) && !oldPassword.equals("")) {
             password = newPasword;
-        } else {
-            redirectPage = "/changeUserDetails.jsp?msg=wrongPass";
         }
         UserDAO userDAO = new UserDAO();
-        userDAO.updateUser(name,number,password,email);
-        redirectPage = "/changeUserDetails.jsp?msg=success";
+        userDAO.updateUser(name, number, password, email);
+        if (password == null) {
+            redirectPage = "/changeUserDetails.jsp?msg=wrongPass";
+        } else {
+            redirectPage = "/changeUserDetails.jsp?msg=success";
+        }
         response.sendRedirect(redirectPage);
 
     } catch (ShopException e) {

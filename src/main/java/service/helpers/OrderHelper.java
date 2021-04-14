@@ -1,7 +1,8 @@
-package service;
+package service.helpers;
 
 import model.*;
 import model.exceptions.ShopException;
+import service.dao.OrderDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,14 +13,13 @@ public class OrderHelper {
         StringBuilder sbIds = new StringBuilder();
         StringBuilder sbQuantities = new StringBuilder();
         cart.getProducts().forEach(cartProduct -> {
-            sbIds.append(cartProduct.getProduct().getId() + ",");
-            sbQuantities.append(cartProduct.getCount() + ",");
+            sbIds.append(cartProduct.getProduct().getId()).append(",");
+            sbQuantities.append(cartProduct.getCount()).append(",");
         });
-        String[] result = {sbIds.toString(), sbQuantities.toString()};
-        return result;
+        return new String[]{sbIds.toString(), sbQuantities.toString()};
     }
 
-    public static Order parseOrder(int id, String productIDS, String quantities, String userEmail, String formattedDate, String status) throws ShopException, SQLException {
+    public static Order parseOrder(int id, String productIDS, String quantities, String userEmail, String formattedDate, String status) throws ShopException {
         List<CartProduct> cartProducts = new ArrayList<>();
         String[] idsArray = productIDS.split(",");
         String[] quantitiesArray = quantities.split(",");
@@ -32,7 +32,7 @@ public class OrderHelper {
         }
 
 
-        Order order = null;
+        Order order;
 
         if (cartProducts.size() > 1) {
             order = new MultipleOrder();
@@ -49,7 +49,7 @@ public class OrderHelper {
 
     public static int getMaxId() throws ShopException {
         int id = 0;
-        List<Order> orders = new ArrayList<>();
+        List<Order> orders;
         OrderDAO orderDAO = new OrderDAO();
         orders = orderDAO.getOrders();
         if (orders.size() != 0) {

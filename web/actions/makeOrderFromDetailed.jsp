@@ -1,14 +1,16 @@
-<%@ page import="service.OrderDAO" %>
+<%@ page import="model.CartProduct" %>
+<%@ page import="model.Product" %>
+<%@ page import="model.SingleOrder" %>
 <%@ page import="model.exceptions.ShopException" %>
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="service.ShopUtils" %>
-<%@ page import="service.OrderHelper" %>
-<%@ page import="service.ProductHelper" %>
-<%@ page import="model.*" %><%
+<%@ page import="service.dao.OrderDAO" %>
+<%@ page import="service.helpers.OrderHelper" %>
+<%@ page import="service.helpers.ProductHelper" %>
+<%@ page import="service.utils.ShopUtils" %>
+<%
     SingleOrder order = null;
     try {
         Product thisProduct = ProductHelper.getProductById(Integer.parseInt(request.getParameter("productId")));
-        order = new SingleOrder(OrderHelper.getMaxId() + 1,session.getAttribute("email").toString(), ShopUtils.getFormattedDate(), new CartProduct(thisProduct));
+        order = new SingleOrder(OrderHelper.getMaxId() + 1, session.getAttribute("email").toString(), ShopUtils.getFormattedDate(), new CartProduct(thisProduct));
         order.setStatus("processing..");
     } catch (ShopException e) {
         e.printStackTrace();

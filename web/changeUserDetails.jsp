@@ -1,10 +1,10 @@
 <%@ page import="model.Product" %>
-<%@ page import="service.ProductDAO" %>
-<%@ page import="service.ShopUtils" %>
+<%@ page import="service.dao.ProductDAO" %>
+<%@ page import="service.utils.ShopUtils" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="service.UserDAO" %>
-<%@ page import="service.UserHelper" %>
+<%@ page import="service.dao.UserDAO" %>
+<%@ page import="service.helpers.UserHelper" %>
 <%@ page import="model.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -17,18 +17,18 @@
 <%@include file="header.jsp" %>
 <h2>Change your details <i class="fa fa-edit"></i></h2>
 <%
-String msg = request.getParameter("msg");
-if ("success".equals(msg)) {
+    String msg = request.getParameter("msg");
+    if ("success".equals(msg)) {
 %>
 <h1 class="success">Information succesfully updated</h1>
 <%
-    } else if ("wrongPass".equals(msg)) {
+} else if ("wrongPass".equals(msg)) {
 %>
 <h1 class="fail">Wrong password. Try again.</h1>
 <%
     }
-  String email = (String) session.getAttribute("email");
-  User thisUser = UserHelper.getUserByEmail(email);
+    String email = (String) session.getAttribute("email");
+    User thisUser = UserHelper.getUserByEmail(email);
 
 %>
 
@@ -51,6 +51,6 @@ if ("success".equals(msg)) {
     <input type="submit" value="Submit">
 </form>
 
-<%@include file="footer.jsp"%>
+<%@include file="footer.jsp" %>
 </body>
 </html>

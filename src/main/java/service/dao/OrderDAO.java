@@ -1,7 +1,8 @@
-package service;
+package service.dao;
 
 import model.Order;
 import model.exceptions.ShopException;
+import service.helpers.OrderHelper;
 
 import java.sql.*;
 import java.util.ArrayList;

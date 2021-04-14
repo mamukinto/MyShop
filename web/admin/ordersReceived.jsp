@@ -1,10 +1,9 @@
-<%@ page import="service.OrderDAO" %>
-<%@ page import="model.Order" %>
-<%@ page import="java.util.List" %>
 <%@ page import="model.CartProduct" %>
-<%@ page import="service.CartHelper" %>
-<%@ page import="service.OrderHelper" %>
+<%@ page import="model.Order" %>
 <%@ page import="model.exceptions.ShopException" %>
+<%@ page import="service.helpers.CartHelper" %>
+<%@ page import="service.helpers.OrderHelper" %>
+<%@ page import="java.util.List" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,20 +18,20 @@
 <%@include file="adminHeader.jsp" %>
 <h1>Orders <i class="fas fa-file-contract"></i></h1>
 <%
-String msg = request.getParameter("msg");
-if ("deliveredSuccess".equals(msg)) {
+    String msg = request.getParameter("msg");
+    if ("deliveredSuccess".equals(msg)) {
 %>
 <h1 class="success">Successfully marked as delivered</h1>
 <%
-    } else if ("deliveredFail".equals(msg)){
+} else if ("deliveredFail".equals(msg)) {
 %>
 <h1 class="fail">Couldn't mark order as delivered</h1>
 <%
-    } else if ("canceledSuccess".equals(msg)) {
+} else if ("canceledSuccess".equals(msg)) {
 %>
 <h1 class="success">Succesfully canceled order.</h1>
 <%
-    } else if ("canceledFail".equals(msg)) {
+} else if ("canceledFail".equals(msg)) {
 %>
 <h1 class="fail">Couldn't cancel order</h1>
 <%
@@ -82,8 +81,10 @@ if ("deliveredSuccess".equals(msg)) {
     <div class="orderStatus">
         <h1>Status:</h1>
         <h1><%out.print(order.getStatus());%></h1>
-        <a href="${pageContext.request.contextPath}/actions/addDeliveredOrder.jsp?orderId=<%out.print(order.getId());%>">Mark as delivered<i class="fas fa-shipping-fast"></i></a>
-        <a href="${pageContext.request.contextPath}/actions/addCanceledOrder.jsp?orderId=<%out.print(order.getId());%>">Cancel this order<i class="fas fa-window-close"></i></a>
+        <a href="${pageContext.request.contextPath}/actions/addDeliveredOrder.jsp?orderId=<%out.print(order.getId());%>">Mark
+            as delivered<i class="fas fa-shipping-fast"></i></a>
+        <a href="${pageContext.request.contextPath}/actions/addCanceledOrder.jsp?orderId=<%out.print(order.getId());%>">Cancel
+            this order<i class="fas fa-window-close"></i></a>
     </div>
 </div>
 <hr>

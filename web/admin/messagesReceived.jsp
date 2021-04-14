@@ -1,9 +1,6 @@
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="service.MessageDAO" %>
 <%@ page import="model.Message" %>
-<%@ page import="model.exceptions.ShopException" %>
+<%@ page import="service.dao.MessageDAO" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.sun.org.apache.bcel.internal.generic.LDIV" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,7 +12,7 @@
     <title>Document</title>
 </head>
 <body>
-<%@include file="adminHeader.jsp"%>
+<%@include file="adminHeader.jsp" %>
 <h3 id="title">Received messages <i class="fas fa-envelope-open-text"></i></h3>
 <%
     try {
@@ -23,18 +20,18 @@
         List<Message> messages = messageDAO.getMessages();
         for (Message message : messages) {
 %>
-    <div class="message">
-        <h3>Subject: <%out.print(message.getSubject());%></h3>
-        <h3>Message: <%out.print(message.getMessage());%></h3>
-        <h3>Date: <%out.print(message.getFormattedDate());%></h3>
-        <h3>Sender: <%out.print(message.getUserEmail());%></h3>
-    </div>
+<div class="message">
+    <h3>Subject: <%out.print(message.getSubject());%></h3>
+    <h3>Message: <%out.print(message.getMessage());%></h3>
+    <h3>Date: <%out.print(message.getFormattedDate());%></h3>
+    <h3>Sender: <%out.print(message.getUserEmail());%></h3>
+</div>
 <%
         }
     } catch (Exception e) {
         System.out.println(e.getMessage());
     }
 %>
-<%@include file="/footer.jsp"%>
+<%@include file="/footer.jsp" %>
 </body>
 </html>

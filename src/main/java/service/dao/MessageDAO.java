@@ -1,4 +1,4 @@
-package service;
+package service.dao;
 
 import model.Message;
 import model.exceptions.ShopException;
@@ -10,7 +10,7 @@ import java.util.List;
 public class MessageDAO {
 public void addMessage(String subject,String message,String formattedDate,String userEmail) throws ShopException {
     try {
-        Connection c=ConnectionProvider.getConnection();
+        Connection c= ConnectionProvider.getConnection();
         PreparedStatement preparedStatement = c.prepareStatement("insert into messages values(?,?,?,?)");
         preparedStatement.setString(1,subject);
         preparedStatement.setString(2,message);

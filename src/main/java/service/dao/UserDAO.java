@@ -1,4 +1,4 @@
-package service;
+package service.dao;
 
 import model.User;
 import model.exceptions.ShopException;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDAO {
     public List<User> getUsers() throws ShopException {
-        List<User> users = new ArrayList<User>();
+        List<User> users = new ArrayList<>();
 
         try {
             Connection connection = ConnectionProvider.getConnection();
@@ -42,13 +42,13 @@ public class UserDAO {
                 statement.executeUpdate("update users set name = '" + name + "', number = '" + number +"' where email='" + email + "'");
             }
            connection.close();
-        } catch (ShopException | SQLException e) {
+        } catch (SQLException e) {
             throw new ShopException(e.getMessage());
         }
 
     }
 
-    public void addUser(String name,String email,String mobileNumber,String password) throws ShopException, SQLException {
+    public void addUser(String name,String email,String mobileNumber,String password) throws SQLException {
         Connection c = ConnectionProvider.getConnection();
         PreparedStatement ps = c.prepareStatement("insert into users values(?,?,?,?)");
         ps.setString(1,name);

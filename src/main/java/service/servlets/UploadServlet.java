@@ -1,4 +1,4 @@
-package service;
+package service.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;

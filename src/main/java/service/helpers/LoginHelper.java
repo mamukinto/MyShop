@@ -1,6 +1,7 @@
-package service;
+package service.helpers;
 
 import model.exceptions.ShopException;
+import service.dao.UserDAO;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

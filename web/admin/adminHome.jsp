@@ -6,7 +6,7 @@
     <title></title>
 </head>
 <body>
-<center><h1>Welcome admin!</h1></center>
+<h1>Welcome admin!</h1>
 <%@include file="/footer.jsp" %>
 </body>
 </html>

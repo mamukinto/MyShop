@@ -1,5 +1,5 @@
 <%@ page import="model.Admin" %>
-<%@ page import="service.LoginHelper" %>
+<%@ page import="service.helpers.LoginHelper" %>
 <%@ page import="model.exceptions.ShopException" %>
 <%@ page import="model.Cart" %>
 <%
@@ -7,13 +7,13 @@
     String password = request.getParameter("password");
 
     if (email.equals(Admin.getID()) && password.equals(Admin.getPASSWORD())) {
-        session.setAttribute("email",email);
+        session.setAttribute("email", email);
         response.sendRedirect("/admin/adminHome.jsp");
     } else {
         try {
-            if (LoginHelper.isValid(email,password)){
-                session.setAttribute("email",email);
-                session.setAttribute("cart",new Cart());
+            if (LoginHelper.isValid(email, password)) {
+                session.setAttribute("email", email);
+                session.setAttribute("cart", new Cart());
                 response.sendRedirect("/home.jsp");
             } else {
                 response.sendRedirect("/login.jsp?msg=invalid");

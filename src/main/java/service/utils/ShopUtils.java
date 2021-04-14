@@ -1,4 +1,4 @@
-package service;
+package service.utils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -11,7 +11,7 @@ public class ShopUtils {
     }
 
     public static String getShortDescription(String description) {
-        String shortDescription = null;
+        String shortDescription;
         String[] words = description.split(" ");
         if (words.length > 3) {
             shortDescription = words[0] + " " + words[1] + " " + words[2] + "...";
@@ -19,9 +19,5 @@ public class ShopUtils {
             shortDescription = description;
         }
         return shortDescription;
-    }
-
-    public static String getFileType(String path) {
-                return path.split(".")[path.split(".").length - 1];
     }
 }

@@ -1,8 +1,7 @@
-<%@ page import="service.ProductHelper" %>
-<%@ page import="model.exceptions.ShopException" %>
-<%@ page import="model.Product" %>
-<%@ page import="java.util.Map" %>
 <%@ page import="model.Cart" %>
+<%@ page import="model.Product" %>
+<%@ page import="model.exceptions.ShopException" %>
+<%@ page import="service.helpers.ProductHelper" %>
 
 <%
     Cart cart = (Cart) session.getAttribute("cart");
@@ -10,7 +9,7 @@
     try {
         Product product = ProductHelper.getProductById(productId);
         String result = cart.addProduct(product);
-        session.setAttribute("cart",cart);
+        session.setAttribute("cart", cart);
         if (result.equals("success")) {
             response.sendRedirect("/home.jsp?msg=success");
         } else if (result.equals("already")) {
@@ -18,6 +17,7 @@
         }
     } catch (ShopException e) {
         e.printStackTrace();
+
     }
 
 %>

@@ -1,7 +1,8 @@
-package service;
+package service.helpers;
 
 import model.User;
 import model.exceptions.ShopException;
+import service.dao.UserDAO;
 
 public class UserHelper {
     public static User getUserByEmail(String email) throws ShopException {

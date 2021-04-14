@@ -1,7 +1,8 @@
-package service;
+package service.helpers;
 
 import model.Product;
 import model.exceptions.ShopException;
+import service.dao.ProductDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ProductHelper {
 
     public static int getMaxId() throws ShopException {
         int id = 0;
-        List<Product> products = new ArrayList<>();
+        List<Product> products;
         ProductDAO productDAO = new ProductDAO();
         products = productDAO.getProducts();
         if (products.size() != 0) {

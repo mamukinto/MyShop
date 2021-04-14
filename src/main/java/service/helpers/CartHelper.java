@@ -1,4 +1,4 @@
-package service;
+package service.helpers;
 
 import model.Cart;
 import model.CartProduct;
