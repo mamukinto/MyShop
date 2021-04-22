@@ -3,7 +3,7 @@
 <%@include file="adminHeader.jsp" %>
 <html>
 <head>
-    <link rel="stylesheet" href="/resources/css/mainPage-style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/mainPage-style.css">
     <title>Add New Product</title>
 </head>
 <body>

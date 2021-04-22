@@ -21,6 +21,6 @@
         <a href="ordersReceived.jsp">Orders Received <i class="fas fa-archive"></i></a>
         <a href="canceledOrders.jsp">Canceled Orders <i class='fas fa-window-close'></i></a>
         <a href="deliveredOrders.jsp">Delivered Orders <i class='fas fa-dolly'></i></a>
-        <a href="${pageContext.request.contextPath}/WEB-INF/login.jsp">Logout <i class='fas fa-share-square'></i></a>
+        <a href="${pageContext.request.contextPath}/login.jsp">Logout <i class='fas fa-share-square'></i></a>
     </div>
 </div>
